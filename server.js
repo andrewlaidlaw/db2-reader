@@ -53,12 +53,6 @@ app.get('/testConnect', function(request, response) {
       conn.close(function () {
         console.log("Connection established");
         // Return a JSON object with the returned data
-        if (JSON.parse(data) == [{"1":1}]) {
-          console.log("data as expected");
-          return response.json({success:1, message:'connection established - all working well', data:data});
-        }
-        console.log(data);
-        console.log(JSON.parse(data));
         return response.json({success:1, message:'connection established', data:data});
       });
     })
