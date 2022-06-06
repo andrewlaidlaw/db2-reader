@@ -35,7 +35,7 @@ app.get('/', function(request, response) {
   response.json({success:1, message:'service running'});
 })
 
-// Test the connection to the database
+// Endpoint to test the connection to the database
 app.get('/testConnect', function(request, response) {
   console.log("Request for /testConnect");
   ibmdb.open(connStr, function (err,conn) {
@@ -43,8 +43,7 @@ app.get('/testConnect', function(request, response) {
       console.log(err);
       return response.json({success:-1, message:err});
     }
-    // Defined SQL query is run against the database
-    // The returned data is in JSON format by default
+    // Simple SQL query that returns data if database connection exits
     conn.query("SELECT 1 from sysibm.sysdummy1;", function (err,data) {
       // Handle errors connecting to database
       if (err){
@@ -52,8 +51,12 @@ app.get('/testConnect', function(request, response) {
         return response.json({success:-2,message:err});
       }
       conn.close(function () {
-        console.log("Response provided");
+        console.log("Connection established");
         // Return a JSON object with the returned data
+        if (data == [{"1":1}]) {
+          console.log("data as expected");
+          return response.json({success:1, message:'connection established - all working well', data:data});
+        }
         return response.json({success:1, message:'connection established', data:data});
       });
     })
