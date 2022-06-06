@@ -35,6 +35,31 @@ app.get('/', function(request, response) {
   response.json({success:1, message:'service running'});
 })
 
+// Test the connection to the database
+app.get('/testConnect', function(request, response) {
+  console.log("Request for /testConnect");
+  ibmdb.open(connStr, function (err,conn) {
+    if (err){
+      console.log(err);
+      return response.json({success:-1, message:err});
+    }
+    // Defined SQL query is run against the database
+    // The returned data is in JSON format by default
+    conn.query("SELECT 1 from sysibm.sysdummy1;", function (err,data) {
+      // Handle errors connecting to database
+      if (err){
+        console.log(err);
+        return response.json({success:-2,message:err});
+      }
+      conn.close(function () {
+        console.log("Response provided");
+        // Return a JSON object with the returned data
+        return response.json({success:1, message:'connection established', data:data});
+      });
+    })
+  })
+})
+
 // Get an object containing all details of all products in the database
 app.get('/getProducts', function(request, response) {
   console.log("Request for /getProducts");
