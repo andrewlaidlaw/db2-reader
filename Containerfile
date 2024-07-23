@@ -1,4 +1,4 @@
-# A containerfile to build the microservice that presents data held within an IBM Db2 database as API calls.
+# A dockerfile to build the microservice that presents data held within an IBM Db2 database as API calls.
 # This takes the node.js code in this repository and builds a container image to run it.
 # This will build for the ppc64le architecture **only**.
 
@@ -10,6 +10,8 @@ LABEL "version"="1.3"
 LABEL "description"="Microservice to present data in IBM Db2 sample database as API endpoints."
 
 # runtime support to enable npm build capabilities
+RUN rm /etc/yum.repos.d/CentOS*
+COPY vault.repo /etc/yum.repos.d/
 RUN yum update -y && yum -y install make gcc-c++ python3 numactl-devel
 
 # XLC runtime support - required by ibm_db node package
