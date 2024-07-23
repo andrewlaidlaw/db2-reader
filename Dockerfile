@@ -10,6 +10,8 @@ LABEL "version"="1.3"
 LABEL "description"="Microservice to present data in IBM Db2 sample database as API endpoints."
 
 # runtime support to enable npm build capabilities
+RUN rm /etc/yum.repos.d/CentOS*
+COPY vault.repo /etc/yum.repos.d/
 RUN yum update -y && yum -y install make gcc-c++ python3 numactl-devel
 
 # XLC runtime support - required by ibm_db node package

@@ -1,0 +1,6 @@
+[CentOS 7 vault]
+name=CentOS 7 Vault - no longer supported or updated
+baseurl=https://vault.centos.org/altarch/7/os/ppc64le/
+enabled=1
+gpgcheck=0
+gpgkey=https://vault.centos.org/altarch/7/os/ppc64le/RPM-GPG-KEY-CentOS-7
