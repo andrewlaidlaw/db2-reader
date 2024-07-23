@@ -4,3 +4,10 @@ baseurl=https://vault.centos.org/altarch/7/os/ppc64le/
 enabled=1
 gpgcheck=0
 gpgkey=https://vault.centos.org/altarch/7/os/ppc64le/RPM-GPG-KEY-CentOS-7
+
+[ibm-xl-compiler-eval]
+name=ibm-xl-compiler-eval
+baseurl=https://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/
+enabled=1
+gpgcheck=1
+gpgkey=https://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/repodata/repomd.xml.key
