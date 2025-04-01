@@ -55,6 +55,14 @@ def getEmployees():
         with job.query('select EMPNO,FIRSTNME,LASTNAME,JOB from SAMPLE.employee') as query:
             results = query.run()
         return results
+    
+@app.route('/getAllEmployees')
+# All employees
+def getAllEmployees():
+    with SQLJob(creds) as job:
+        with job.query('select EMPNO,FIRSTNME,LASTNAME,JOB from SAMPLE.employee') as query:
+            results = query.run()
+        return results
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8081)
