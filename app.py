@@ -23,6 +23,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
+@cross_origin()
 # Added root endpoint
 def root():
     content = {}
@@ -32,6 +33,7 @@ def root():
     return jsonify(content)
 
 @app.route('/employee/<int:empid>')
+@cross_origin()
 # One employee
 def employee(empid: int):
     with SQLJob(creds) as job:
@@ -41,6 +43,7 @@ def employee(empid: int):
         return data
 
 @app.route('/getProducts')
+@cross_origin()
 # All products
 def getProducts():
     with SQLJob(creds) as job:
@@ -49,6 +52,7 @@ def getProducts():
         return results
 
 @app.route('/getEmployees')
+@cross_origin()
 # All employees
 def getEmployees():
     with SQLJob(creds) as job:
@@ -57,6 +61,7 @@ def getEmployees():
         return results
     
 @app.route('/getAllEmployees')
+@cross_origin()
 # All employees
 def getAllEmployees():
     with SQLJob(creds) as job:
